@@ -25,6 +25,15 @@ app.get("/getmessages", async (req, res) => {
 app.get("/test1", (req, res) => {
   res.json({"message":"working"})
 })
+app.get("/getvehicles", async (req, res) => {
+  try {
+    const response = await fetch('https://masonshop.in/api/rentalvehicle');
+    const data = await response.json();
+    res.json({"vehicles": data});
+  } catch (error) {
+    res.json({"error": "Failed to fetch vehicles"});
+  }
+});
 mongoose.connect('mongodb://localhost:27017/dbname', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
