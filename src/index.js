@@ -22,9 +22,12 @@ app.get("/getmessages", async (req, res) => {
   const messages = await Message.find({});
   res.json({"message" : messages});
 })
-app.get("/test", (req, res) => {
+app.get("/test1", (req, res) => {
   res.json({"message":"working"})
 })
+mongoose.connect('mongodb://localhost:27017/dbname', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 
 
